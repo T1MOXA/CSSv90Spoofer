@@ -14,7 +14,7 @@ int __cdecl gac_special(...)
 	{
 		//
 		// A little hack here. I hate these kind of solutions, but I don't have
-		// any other choise to print my magnificent copyright in game console.
+		// any other simple way to print my magnificent copyright in game console.
 		//
 
 		Msg("SteamID Changer for CSSv90 initialized.\n");
