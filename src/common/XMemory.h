@@ -37,7 +37,15 @@ inline static void *Transpose(void* addr, int offset, bool deref = false)
 */
 inline static void *AllocateExecutableMemory(unsigned int uSize)
 {
-	return HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY | HEAP_CREATE_ALIGN_16 | HEAP_CREATE_ENABLE_EXECUTE, uSize);
+	auto ret = malloc(uSize);
+	if (!ret)
+		return nullptr;
+
+	DWORD oldProtect;
+	if (!VirtualProtect(ret, uSize, PAGE_EXECUTE_READWRITE, &oldProtect))
+		return nullptr;
+
+	return ret;
 }
 
 /**
